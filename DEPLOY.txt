@@ -1,0 +1,9 @@
+GitHub Pages deployment
+
+1. Upload index.html, README.md, DEPLOY.txt and .nojekyll to the repository root.
+2. In GitHub open Settings > Pages.
+3. Choose Deploy from a branch.
+4. Select main and /(root), then Save.
+
+No build step is required.
+The favicon is embedded in index.html.

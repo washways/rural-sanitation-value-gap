@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rural Sanitation Value Gap | Financing need and child survival in LDCs</title>
+<meta name="description" content="Rural Sanitation Value Gap compares recorded sanitation finance with the cost of closing the rural basic-sanitation gap, and shows the child lives at stake, across Least Developed Countries using World Bank and OECD data.">
+<meta name="rs-v" content="9.0.0">
+<meta name="theme-color" content="#12384a">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxMDJiMzkiLz48cGF0aCBkPSJNMTggMTdoMjh2OEgyOHY3aDE2djhIMjh2N2gxOHY4SDE4eiIgZmlsbD0iI2ZmZmZmZiIvPjxjaXJjbGUgY3g9IjQ2IiBjeT0iMTgiIHI9IjYiIGZpbGw9IiM2OWQyYzEiLz48L3N2Zz4=" type="image/svg+xml">
+<style>
+:root{--ink:#102b39;--muted:#60727c;--line:#d8e1e5;--blue:#1475a8;--blue2:#0f628d;--teal:#0b8a7b;--soft2:#eef8f5;--amberbg:#fbf6ea;--head:#12384a;--accent:#69d2c1}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+a{color:var(--blue2);text-decoration:none}a:hover{text-decoration:underline}
+.hidden{display:none!important}.small{font-size:11px;color:var(--muted);line-height:1.5}.loading{opacity:.58;pointer-events:none}
+h2{font-size:22px;line-height:1.2;letter-spacing:-.02em;font-weight:900;margin:0 0 6px}h3{font-size:14px;font-weight:850;margin:0 0 4px}
+
+/* Header */
+.top{background:var(--head);color:#fff}
+.topin,.shell{max-width:1180px;margin:0 auto;padding-left:22px;padding-right:22px}
+.topin{padding-top:28px}
+.brandrow{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;flex-wrap:wrap}
+.kicker{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:900;color:var(--accent)}
+h1{font-size:42px;line-height:1;letter-spacing:-.045em;margin:8px 0 10px;font-weight:900}
+.lead{margin:0;color:rgba(255,255,255,.78);font-size:17px;max-width:720px;line-height:1.4}
+.live{font-size:11px;color:rgba(255,255,255,.62);padding-bottom:4px}.live strong{color:#fff}
+.tabs{display:flex;gap:28px;margin-top:26px;overflow-x:auto}
+.tabbtn{border:0;background:none;padding:11px 0 13px;font:inherit;font-weight:800;color:rgba(255,255,255,.62);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tabbtn:hover{color:#fff}.tabbtn.active{color:#fff;border-color:var(--accent)}
+
+/* Layout and controls */
+.shell{padding-top:30px;padding-bottom:46px}
+.panel{display:none}.panel.active{display:block}
+.toolbar{display:flex;justify-content:space-between;gap:14px;align-items:end;flex-wrap:wrap;margin-bottom:22px}
+.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:end}
+.control{min-width:220px}.control.sm{min-width:165px}.control.xs{min-width:140px}
+label{display:block;font-size:10px;font-weight:850;color:#5d6d77;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+select,input[type=text],input[type=number]{width:100%;border:1px solid #cfd9de;border-radius:5px;background:#fff;padding:9px 10px;font:inherit;color:var(--ink)}
+select:focus,input:focus{outline:2px solid rgba(20,117,168,.15);border-color:var(--blue)}
+.status{font-size:10.5px;color:var(--muted);font-weight:700}
+.btn{display:inline-block;border:1px solid #c8d3da;background:#fff;color:#31404b;border-radius:4px;padding:8px 10px;font:inherit;font-size:11.5px;font-weight:800;cursor:pointer}
+.btn:hover{text-decoration:none;filter:brightness(.98)}
+.tab-link{border:0;background:transparent;color:var(--blue2);font:inherit;font-size:11px;font-weight:850;padding:0;cursor:pointer;margin-top:14px}.tab-link:hover{text-decoration:underline}
+
+/* Country identity and flags */
+.country-identity{display:flex;align-items:center;gap:13px;margin:0 0 22px}
+.flagbox{width:48px;height:32px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.flagbox img{width:46px;height:31px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(18,36,47,.12)}
+.flagemoji{font-size:25px;line-height:1}
+.country-name{font-size:26px;font-weight:900;letter-spacing:-.025em;line-height:1.05}
+.country-note{font-size:11px;color:var(--muted);margin-top:3px}
+.inline-flag{display:inline-flex;align-items:center;gap:7px}
+.inline-flag img{width:20px;height:14px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.1);flex:0 0 auto}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hero-main{padding-right:40px}
+.hero-side{border-left:1px solid var(--line);padding-left:40px;display:flex;flex-direction:column;justify-content:center}
+.eyebrow{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:9px}
+.hero-big{font-size:92px;line-height:.84;font-weight:930;letter-spacing:-.065em}
+.hero-unit{font-size:17px;font-weight:850;margin-top:16px;max-width:540px}
+.hero-main p{font-size:16px;line-height:1.45;color:#38515e;max-width:630px;margin:14px 0 0}
+.caveat{font-size:11px;color:var(--muted);margin-top:12px;max-width:640px}
+.side-big{font-size:58px;line-height:1;font-weight:930;letter-spacing:-.045em;color:var(--blue2);margin:2px 0 6px}
+.side-mid{font-size:34px;line-height:1;font-weight:930;letter-spacing:-.035em;margin:2px 0 6px}
+.side-sub{font-size:12px;color:var(--muted);font-weight:700;max-width:330px}
+.rule{height:1px;background:var(--line);margin:20px 0 16px}
+
+/* Simple bars */
+.bars{display:grid;gap:12px;max-width:820px}
+.bar-row{display:grid;grid-template-columns:250px 1fr 90px;gap:10px;align-items:center}
+.bar-label{font-size:11px;color:#4f616c}
+.bar-track{height:12px;background:#edf2f4;overflow:hidden}
+.bar-fill{height:100%;background:#7896a6;min-width:2px}
+.bar-row.active .bar-fill{background:var(--teal)}
+.bar-row.active .bar-label,.bar-row.active .bar-value{font-weight:850;color:var(--ink)}
+.bar-value{text-align:right;font-size:11px;font-weight:800;font-variant-numeric:tabular-nums}
+.chart-wrap{padding:27px 0 30px;border-bottom:1px solid var(--line)}
+.viz-note{font-size:11px;color:var(--muted);margin-bottom:16px}
+
+/* Stat strips */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line);margin-bottom:30px}
+.strip.four{grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin:18px 0 0}
+.stat{padding:22px 24px 20px 0;border-right:1px solid var(--line);margin-right:24px}
+.stat:last-child{border-right:0;margin-right:0}
+.stat .n{display:block;font-size:40px;line-height:1;font-weight:920;letter-spacing:-.045em}
+.strip.four .stat .n{font-size:32px}
+.stat .l{display:block;font-size:10.5px;color:var(--muted);margin-top:7px;max-width:260px;font-weight:750;text-transform:uppercase;letter-spacing:.035em}
+.stat.em .n{color:var(--blue2)}
+
+/* Sections */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:56px;padding-bottom:28px}
+.section{padding:30px 0;border-top:1px solid var(--line)}
+.coverage-track{height:18px;display:flex;background:#edf1f3;margin-top:13px}
+.coverage-served{height:100%;background:var(--teal)}
+.coverage-labels{display:flex;justify-content:space-between;gap:15px;margin-top:8px;font-size:11px}
+.coverage-labels strong{font-size:14px}
+.methodtabs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line);margin:16px 0 0}
+.methodtab{appearance:none;border:0;background:transparent;padding:12px 10px;font:inherit;font-size:12px;font-weight:850;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.methodtab:hover{color:var(--ink)}.methodtab.active{color:var(--ink);border-color:var(--teal)}
+.note{padding:11px 12px;border-radius:3px;background:var(--soft2);color:#375651;font-size:12px;line-height:1.5;margin-top:14px}
+.note.warn{background:var(--amberbg);color:#6a5229}
+.resultbox{margin-top:10px;padding:11px 12px;border-radius:4px;background:var(--soft2);color:#34534f;font-size:11.5px}
+.finance-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:34px;align-items:center}
+.finance-entry{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;margin-top:10px}
+.tools{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px}.tools a{font-size:11.5px;font-weight:800}
+details.assumptions{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+details.assumptions summary{cursor:pointer;font-size:11.5px;font-weight:800;color:#43525d}
+.sliders{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:14px}
+.slider .row{display:flex;justify-content:space-between;gap:10px;font-size:11px;font-weight:800;border-bottom:1px solid var(--line);padding-bottom:7px}
+.slider input{width:100%;margin-top:12px;accent-color:var(--blue)}
+
+/* LDC comparison */
+.banner{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:18px 0 20px;margin-bottom:25px;border-top:4px solid var(--ink);border-bottom:1px solid var(--line)}
+.banner .tag{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.banner p{margin:0;font-size:13px;line-height:1.5;color:#4b5e68;max-width:760px}
+.chartgrid{display:grid;grid-template-columns:1fr 1fr;gap:44px 60px;margin-bottom:8px}
+.chartcard{padding-bottom:24px}
+.rankchart{display:grid;gap:7px}
+.barrow{display:grid;grid-template-columns:140px 1fr 72px;gap:8px;align-items:center}
+.barlabel{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track{height:7px;background:#e9eef1;overflow:hidden}
+.barfill{height:100%;background:var(--blue);min-width:2px}
+.barrow .barfill{background:var(--blue)}.barrow.selected .barfill{background:var(--teal)}
+.barval{text-align:right;font-size:10.5px;font-weight:800;font-variant-numeric:tabular-nums}
+.table-head{display:flex;justify-content:space-between;gap:10px;align-items:end;flex-wrap:wrap}
+.filterrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.filterrow .control{min-width:170px}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:4px;margin-top:10px}.detailcol.hidden{display:none}.scenario-row{display:flex;gap:18px;align-items:end;flex-wrap:wrap;margin-top:14px}.scenario-row .slider{min-width:260px;flex:1}.quiet{color:var(--muted);font-size:11px}.pillstat{font-weight:900;color:var(--teal)}
+table{width:100%;border-collapse:collapse;min-width:1120px}
+th,td{padding:9px 10px;border-bottom:1px solid #e8edf0;text-align:left;vertical-align:middle}
+th{font-size:10px;text-transform:uppercase;letter-spacing:.035em;color:#5c6974;background:#f6f8f9;position:sticky;top:0;z-index:1;white-space:nowrap}
+th.sortable{cursor:pointer}th.sortable:hover{color:var(--blue2)}
+td{font-size:11.5px}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.countrycell{font-weight:760}.selrow{background:#f2f7fa}.sortmark{font-size:9px;margin-left:4px;color:#98a3ab}
+
+/* VSL benchmarks */
+.method-intro{margin-bottom:24px}.method-intro h2{font-size:32px;letter-spacing:-.035em;max-width:760px}.method-intro p{margin:0;color:var(--muted);max-width:720px}
+.vsl-head,.vsl-row{display:grid;grid-template-columns:minmax(240px,1.6fr) .8fr 1fr 1fr .8fr;gap:18px;align-items:center}
+.vsl-head{padding:0 0 8px;border-bottom:3px solid var(--ink);font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.vsl-row{padding:18px 0;border-bottom:1px solid var(--line)}
+.vsl-row>div:first-child{display:flex;flex-direction:column;gap:4px}
+.vsl-row strong{font-size:14px}.vsl-row span{font-size:11px;color:var(--muted)}
+.vsl-row .v{font-size:18px;font-weight:900;font-variant-numeric:tabular-nums}
+.vsl-row .v.bcr{color:var(--teal)}
+
+/* Methodology */
+.methodology{display:grid;grid-template-columns:1fr 1fr;gap:0 44px}
+.methodology .section{padding:24px 0}
+.methodology p{font-size:12.5px}
+.formula{font:11px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#f6f8f9;padding:9px;border-radius:3px;margin:8px 0;overflow:auto}
+.source-list{margin:7px 0 0;padding-left:18px}.source-list li{margin:6px 0;font-size:12px}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;background:#edf1f3;border-radius:3px;padding:1px 4px}
+table.costs{min-width:0;margin-top:8px}table.costs td,table.costs th{padding:6px 8px;position:static}
+.footer{font-size:10px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:16px}
+
+
+/* Whole sanitation benefit case */
+.benefit-case{padding:34px 0 32px;border-top:4px solid var(--ink);border-bottom:1px solid var(--line);margin-top:30px}
+.benefit-top{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:48px;align-items:end}
+.benefit-top h2{font-size:34px;line-height:1.02;letter-spacing:-.04em;max-width:690px;margin-bottom:10px}
+.benefit-top p{margin:0;max-width:680px;color:#405661;font-size:15px}
+.benchmark-big{display:block;font-size:64px;line-height:.9;font-weight:930;letter-spacing:-.055em;color:var(--teal)}
+.benchmark-label{display:block;font-size:14px;line-height:1.25;font-weight:900;margin-top:10px;max-width:270px}
+.benchmark-source{display:block;font-size:10.5px;color:var(--muted);margin-top:7px;max-width:290px}
+.benefit-list{margin-top:28px;border-top:1px solid var(--line)}
+.benefit-line{display:grid;grid-template-columns:210px 1fr 145px;gap:20px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+.benefit-line .bn{font-size:13px;font-weight:900}.benefit-line .bd{font-size:12px;color:#4d626d}.benefit-line .bs{text-align:right;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.055em;color:var(--blue2)}
+.benefit-line.included .bn,.benefit-line.included .bs{color:var(--teal)}
+.return-compare{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.return-side{padding:22px 28px 22px 0}.return-side+ .return-side{border-left:1px solid var(--line);padding-left:28px}
+.return-side .rlabel{font-size:10px;text-transform:uppercase;letter-spacing:.07em;font-weight:900;color:var(--muted)}
+.return-side .rnum{font-size:44px;line-height:1;font-weight:930;letter-spacing:-.045em;margin-top:7px}
+.return-side.broad .rnum{color:var(--teal)}
+.return-side .rdesc{font-size:11px;color:var(--muted);margin-top:7px;max-width:420px}
+.malawi-context{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;margin-top:22px;padding:18px 0;border-top:1px solid var(--line)}
+.malawi-context .mnum{font-size:38px;font-weight:930;letter-spacing:-.04em;color:var(--blue2);white-space:nowrap}.malawi-context .mtxt{font-size:12px;color:#425862;max-width:760px}
+.partial-banner{margin:15px 0 0;padding:13px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:13px;font-weight:800}.partial-banner strong{color:var(--teal)}
+@media(max-width:930px){.benefit-top{grid-template-columns:1fr}.benefit-line{grid-template-columns:170px 1fr 120px}}
+@media(max-width:650px){.benefit-top h2{font-size:29px}.benchmark-big{font-size:52px}.benefit-line{grid-template-columns:1fr;gap:4px}.benefit-line .bs{text-align:left}.return-compare{grid-template-columns:1fr}.return-side+ .return-side{border-left:0;border-top:1px solid var(--line);padding-left:0}.malawi-context{grid-template-columns:1fr;gap:6px}}
+@media(max-width:930px){
+  h1{font-size:36px}.hero{grid-template-columns:1fr}.hero-main{padding-right:0}
+  .hero-side{border-left:0;border-top:1px solid var(--line);padding:26px 0 0;margin-top:26px}
+  .hero-big{font-size:76px}.grid2,.chartgrid,.methodology,.finance-grid{grid-template-columns:1fr;gap:28px}
+  .strip.four{grid-template-columns:1fr 1fr}.strip.four .stat:nth-child(2){border-right:0}
+  .sliders{grid-template-columns:1fr}.vsl-head{display:none}
+  .vsl-row{grid-template-columns:1fr 1fr;gap:8px 18px}.vsl-row>div:first-child{grid-column:1/-1}
+  .vsl-row .v:before{content:attr(data-l) "  ";font-size:9px;color:var(--muted);font-weight:700}
+}
+@media(max-width:650px){
+  .topin,.shell{padding-left:16px;padding-right:16px}h1{font-size:31px}.lead{font-size:15px}
+  .hero-big{font-size:62px}.side-big{font-size:46px}
+  .strip,.strip.four{grid-template-columns:1fr}.stat{border-right:0!important;border-bottom:1px solid var(--line);margin-right:0}.stat:last-child{border-bottom:0}
+  .bar-row{grid-template-columns:130px 1fr 66px}.barrow{grid-template-columns:100px 1fr 62px}
+  .control,.control.sm,.control.xs{min-width:100%}.finance-entry{grid-template-columns:1fr}
+  .banner{grid-template-columns:1fr;gap:5px}.methodtabs{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="topin">
+    <div class="brandrow">
+      <div>
+        <div class="kicker">Rural sanitation · child survival</div>
+        <h1>Rural Sanitation Value Gap</h1>
+        <p class="lead">What would it take to close the rural sanitation gap, and what are the child-survival returns?</p>
+      </div>
+      <div class="live" id="globalStatus">Loading live data…</div>
+    </div>
+    <nav class="tabs" aria-label="Main sections">
+      <button class="tabbtn active" data-tab="countryPanel">Country case</button>
+      <button class="tabbtn" data-tab="comparePanel">LDC comparison</button>
+      <button class="tabbtn" data-tab="valuePanel">VSL benchmarks</button>
+      <button class="tabbtn" data-tab="methodPanel">Methodology</button>
+    </nav>
+  </div>
+</header>
+
+<main class="shell">
+<section id="countryPanel" class="panel active">
+  <div class="toolbar">
+    <div class="controls">
+      <div class="control"><label for="country">Country</label><select id="country"></select></div>
+      <div class="control sm"><label for="period">Financing period</label><select id="period"><option value="2022-2024">2022–2024 average</option><option value="2023-2024">2023–2024 average</option><option value="2024">2024 only</option></select></div>
+      <div class="control sm"><label for="costScenario">Cost scenario</label><select id="costScenario"><option value="low">Low</option><option value="central" selected>Central</option><option value="high">High</option><option value="custom">Custom</option></select></div>
+      <div class="control xs"><label for="unitCost">Unit cost, US$/person</label><input id="unitCost" type="number" min="1" step="1"></div>
+      <div class="control xs"><label for="target">Close the gap by</label><select id="target"><option value="2030">2030</option><option value="2035">2035</option><option value="2040">2040</option></select></div>
+    </div>
+    <span class="status" id="countryStatus">World Bank + OECD CRS</span>
+  </div>
+
+  <div class="country-identity">
+    <span class="flagbox" id="selectedFlag" aria-hidden="true"></span>
+    <div><div class="country-name" id="selectedCountryName">Malawi</div><div class="country-note" id="dataYears">Loading data years…</div></div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">Recorded donor finance vs rural investment need</div>
+      <div class="hero-big" id="heroShare">…</div>
+      <div class="hero-unit" id="heroUnit">of estimated annual rural sanitation investment need is covered by recorded donor finance</div>
+      <p id="heroText">Loading the country case…</p>
+      <div class="caveat" id="heroCaveat"></div>
+    </div>
+    <div class="hero-side">
+      <div class="eyebrow">Potential child deaths averted</div>
+      <div class="side-big" id="heroLives">…</div>
+      <div class="side-sub">modelled under-five deaths a year potentially averted once the gap is closed</div>
+      <div class="rule"></div>
+      <div class="eyebrow">Annual investment gap</div>
+      <div class="side-mid" id="heroShortfall">…</div>
+      <div class="side-sub" id="heroShortfallSub"></div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <h2>What it would take to close the gap</h2>
+    <div class="viz-note" id="needChartNote">Recorded donor finance per year compared with estimated annual capital investment need.</div>
+    <div class="bars" id="needChart"><div class="small">Loading…</div></div>
+  </div>
+
+  <div class="strip">
+    <div class="stat"><span class="n" id="kGap">…</span><span class="l">rural sanitation gap</span></div>
+    <div class="stat"><span class="n" id="kUnserved">…</span><span class="l">rural people without basic sanitation</span></div>
+    <div class="stat em"><span class="n" id="kNeed">…</span><span class="l">capital cost to close the gap</span></div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <h2>Rural sanitation gap</h2>
+      <div class="viz-note">World Bank / JMP rural basic sanitation coverage.</div>
+      <div class="coverage-track"><div class="coverage-served" id="coverageFill" style="width:0%"></div></div>
+      <div class="coverage-labels"><span><strong id="kCoverage">…</strong> basic sanitation</span><span><strong id="kGap2">…</strong> gap</span></div>
+    </div>
+    <div>
+      <h2>What donor finance is coded to sanitation?</h2>
+      <div class="viz-note">Basic sanitation is the relevant measure. Wider WASH envelopes include water supply and are shown only for context.</div>
+      <div class="bars" id="scopeChart"><div class="small">Loading…</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Who pays for the investment?</h2>
+    <div class="small">Households often finance part of rural sanitation. This scenario is illustrative and does not change the headline or LDC rankings.</div>
+    <div class="scenario-row">
+      <div class="slider"><div class="row"><span>Household share of capital cost</span><span id="vHH">50%</span></div><input id="hhShare" type="range" min="0" max="80" step="5" value="50"></div>
+      <div><span class="quiet">Public / programme financing need</span><div class="side-mid" id="publicNeed">…</div><div class="quiet" id="publicCoverageText"></div></div>
+    </div>
+    <div class="bars" id="payerChart" style="margin-top:18px"><div class="small">Loading…</div></div>
+    <div class="tools"><a href="https://washways.org/sanitation-equity-performance/" target="_blank" rel="noopener">Explore affordability and subsidy targeting ↗</a></div>
+  </div>
+
+  <div class="benefit-case">
+    <div class="benefit-top">
+      <div>
+        <div class="eyebrow">The full sanitation return</div>
+        <h2>Child survival is only one part of what sanitation delivers</h2>
+        <p>Sanitation benefits children, adults and older people through better health, lower medical and caregiving costs, more time for work and school, improved nutrition and development, and greater dignity, privacy and safety.</p>
+      </div>
+      <div>
+        <span class="benchmark-big">$5.50</span>
+        <span class="benchmark-label">global return per $1 invested in sanitation</span>
+        <span class="benchmark-source">WHO economic evidence: lower health costs, higher productivity and fewer premature deaths. Context only, not a country forecast.</span>
+      </div>
+    </div>
+    <div class="benefit-list" aria-label="Sanitation benefit channels">
+      <div class="benefit-line included"><div class="bn">Under-five mortality</div><div class="bd">Deaths potentially averted from reduced diarrhoeal disease.</div><div class="bs">Monetised here</div></div>
+      <div class="benefit-line"><div class="bn">Illness & health costs</div><div class="bd">Fewer episodes of diarrhoea and other sanitation-related disease; lower treatment costs.</div><div class="bs">Additional benefit</div></div>
+      <div class="benefit-line"><div class="bn">Caregiving & productivity</div><div class="bd">Fewer sick and caregiving days for parents, grandparents and other household members.</div><div class="bs">Additional benefit</div></div>
+      <div class="benefit-line"><div class="bn">Nutrition & development</div><div class="bd">Reduced exposure to faecal pathogens can support nutrition, growth and child development.</div><div class="bs">Additional benefit</div></div>
+      <div class="benefit-line"><div class="bn">Dignity, privacy & safety</div><div class="bd">Safer, more private sanitation matters particularly for women, girls, older people and people with disabilities.</div><div class="bs">Additional benefit</div></div>
+      <div class="benefit-line"><div class="bn">Education & daily life</div><div class="bd">Better attendance, convenience and time savings, with benefits extending across the whole household.</div><div class="bs">Additional benefit</div></div>
+    </div>
+    <div class="return-compare">
+      <div class="return-side">
+        <div class="rlabel">This model: mortality only</div>
+        <div class="rnum" id="broaderMortalityReturn">…</div>
+        <div class="rdesc">Present value of modelled under-five diarrhoeal mortality benefits per $1 of capital investment.</div>
+      </div>
+      <div class="return-side broad">
+        <div class="rlabel">Broader sanitation evidence</div>
+        <div class="rnum">$5.50 / $1</div>
+        <div class="rdesc">WHO global economic benchmark covering health costs, productivity and premature mortality. It is not directly additive to the country model.</div>
+      </div>
+    </div>
+    <div class="malawi-context hidden" id="malawiBroaderBox">
+      <div class="mnum">$57m / year</div>
+      <div class="mtxt"><strong>Malawi context.</strong> UNICEF Malawi cites poor sanitation and hygiene as costing the country about US$57 million each year, or 1.1% of GDP, through health costs and productivity losses. This published estimate is contextual and is not used in the calculations above. <a href="https://www.unicef.org/malawi/water-sanitation-and-hygiene" target="_blank" rel="noopener">Source ↗</a></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Mortality-only value benchmark</h2>
+    <div class="small">This section values only modelled under-five diarrhoeal deaths averted using a country-specific VSL transfer estimate.</div>
+    <div class="partial-banner"><strong>This is not the sanitation ROI.</strong> Morbidity, health costs, productivity, nutrition, education, dignity, safety and wider household benefits are additional.</div>
+    <div class="methodtabs" id="frontMethodTabs">
+      <button class="methodtab" data-value-method="low">Conservative VSL</button>
+      <button class="methodtab active" data-value-method="central">Central VSL</button>
+      <button class="methodtab" data-value-method="high">Upper VSL</button>
+    </div>
+    <div class="strip four">
+      <div class="stat"><span class="n" id="vVsl">…</span><span class="l">VSL benchmark</span></div>
+      <div class="stat"><span class="n" id="vAnnual">…</span><span class="l">mortality value per year once the gap is closed</span></div>
+      <div class="stat"><span class="n" id="vPV">…</span><span class="l">present value of mortality benefits</span></div>
+      <div class="stat em"><span class="n" id="vBcr">…</span><span class="l">mortality-only return per $1 invested</span></div>
+    </div>
+    <div class="note warn" id="bcrNote"></div>
+    <button class="tab-link" data-open-tab="valuePanel">Compare all VSL benchmarks →</button>
+  </div>
+
+  <div class="section" id="malawiFinanceBox">
+    <div class="finance-grid">
+      <div>
+        <h2>Add Malawi government financing</h2>
+        <div class="small">Use <a href="https://apps.washways.org/WASHCostMalawi/" target="_blank" rel="noopener"><strong>WASHCost Malawi</strong></a> for domestic investment and life-cycle costs. Enter annual executed rural sanitation spending below.</div>
+        <div class="finance-entry">
+          <div><label for="domesticSpend">Annual government rural sanitation financing, US$</label><input id="domesticSpend" type="number" min="0" step="1000" placeholder="e.g. 5000000"></div>
+          <a class="btn" href="https://apps.washways.org/WASHCostMalawi/" target="_blank" rel="noopener">Open WASHCost Malawi ↗</a>
+        </div>
+        <div class="resultbox hidden" id="domesticResult"></div>
+      </div>
+      <div>
+        <h3>Country case only</h3>
+        <div class="small">Domestic finance is added to the Malawi country case and VSL benchmarks, but excluded from LDC rankings because comparable data are not available across all countries. Use executed expenditure, not budget allocations.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Related evidence</h2>
+    <div class="tools">
+      <a href="https://apps.washways.org/WASHCostMalawi/" target="_blank" rel="noopener">WASHCost Malawi ↗</a>
+      <a href="https://apps.washways.org/ChildWASHHealthImpacts/" target="_blank" rel="noopener">Child WASH Health Impacts ↗</a>
+      <a href="https://washways.org/sanitation-model/" target="_blank" rel="noopener">Sanitation Impact Modeler ↗</a>
+      <a href="https://washways.org/sanitation-equity-performance/" target="_blank" rel="noopener">Sanitation Equity &amp; Performance ↗</a>
+      <a href="https://apps.washways.org/OECD-Expenditure-Explorer" target="_blank" rel="noopener">OECD Expenditure Explorer ↗</a>
+    </div>
+    <details class="assumptions">
+      <summary>Adjust the epidemiological assumptions</summary>
+      <div class="sliders">
+        <div class="slider"><div class="row"><span>Diarrhoea share of U5 deaths</span><span id="vDia">9.7%</span></div><input id="dia" type="range" min="2" max="20" step="0.1" value="9.7"><div class="small">Regional starting assumption; resets when the country changes.</div></div>
+        <div class="slider"><div class="row"><span>Reduction in U5 diarrhoea risk</span><span id="vEff">13%</span></div><input id="eff" type="range" min="3" max="30" step="1" value="13"><div class="small">Default uses the Cochrane cluster-RCT estimate for children under five (RR 0.87).</div></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="comparePanel" class="panel">
+  <div class="banner"><div class="tag">Donor finance only</div><p><strong>OECD CRS disbursements from external partners</strong>, compared with the capital cost of closing each country's rural basic-sanitation gap at the regional default unit cost. Government, household and private spending are not included.</p></div>
+  <div class="toolbar">
+    <div class="controls">
+      <div class="control"><label for="compareMethod">Financing measure</label><select id="compareMethod"><option value="narrow">Basic sanitation donor ODA · 14032</option><option value="basic">Basic WASH incl. water · 14030/31/32 (context)</option><option value="wash">Total WASH incl. water · sector 140 (context)</option></select></div>
+      <div class="control sm"><label for="chartCount">Chart coverage</label><select id="chartCount"><option value="15">Top 15</option><option value="25">Top 25</option><option value="all">All LDCs</option></select></div>
+    </div>
+    <span class="status" id="compareStatus">Regional unit costs · same target year and assumptions as the country case</span>
+  </div>
+
+  <div class="chartgrid">
+    <div class="chartcard">
+      <h2>Lowest donor-finance coverage</h2>
+      <div class="viz-note">Recorded donor finance as a share of estimated annual rural sanitation investment need.</div>
+      <div class="rankchart" id="shareChart"><div class="small">Loading…</div></div>
+    </div>
+    <div class="chartcard">
+      <h2>Largest annual investment gap</h2>
+      <div class="viz-note">Annual capital need minus recorded donor finance.</div>
+      <div class="rankchart" id="shortfallChart"><div class="small">Loading…</div></div>
+    </div>
+    <div class="chartcard">
+      <h2>Most potential child deaths averted</h2>
+      <div class="viz-note">Modelled under-five deaths a year potentially averted once the rural sanitation gap is closed.</div>
+      <div class="rankchart" id="livesChart"><div class="small">Loading…</div></div>
+    </div>
+    <div class="chartcard">
+      <h2>Highest mortality-only return</h2>
+      <div class="viz-note">Present value of modelled under-five mortality benefits per US$1 of capital investment, using the central VSL. This is not a full sanitation ROI.</div>
+      <div class="rankchart" id="returnChart"><div class="small">Loading…</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="table-head">
+      <div><h2>All LDCs</h2><div class="small">Filter, sort any column, or export the filtered table.</div></div>
+      <div style="display:flex;gap:8px"><button class="btn" id="moreColsBtn">More columns</button><button class="btn" id="csvBtn">Export filtered CSV</button></div>
+    </div>
+    <div class="filterrow">
+      <div class="control"><label for="compareSearch">Country</label><input id="compareSearch" type="text" placeholder="Search country"></div>
+      <div class="control sm"><label for="regionFilter">Region</label><select id="regionFilter"><option value="all">All regions</option></select></div>
+      <div class="control sm"><label for="spendFilter">Financing data</label><select id="spendFilter"><option value="all">All</option><option value="positive">Positive recorded finance</option><option value="zero">Zero recorded finance</option><option value="missing">No CRS record</option></select></div>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th class="sortable" data-sort="name">Country <span class="sortmark"></span></th>
+          <th class="sortable" data-sort="region">Region <span class="sortmark"></span></th>
+          <th class="sortable num" data-sort="gap">Rural sanitation gap <span class="sortmark"></span></th>
+          <th class="sortable num" data-sort="annualNeed">Annual investment need <span class="sortmark"></span></th>
+          <th class="sortable num" data-sort="spend">Annual donor finance <span class="sortmark"></span></th>
+          <th class="sortable num" data-sort="shareOfNeed">Finance / need <span class="sortmark"></span></th>
+          <th class="sortable num" data-sort="annual">Potential U5 deaths averted / yr <span class="sortmark"></span></th>
+          <th class="sortable num detailcol hidden" data-sort="unserved">Rural people unserved <span class="sortmark"></span></th>
+          <th class="sortable num detailcol hidden" data-sort="shortfall">Annual investment gap <span class="sortmark"></span></th>
+          <th class="sortable num detailcol hidden" data-sort="vslCentral">Central VSL <span class="sortmark"></span></th>
+          <th class="sortable num detailcol hidden" data-sort="bcrCentral">Mortality-only return / $1 <span class="sortmark"></span></th>
+          <th class="sortable num detailcol hidden" data-sort="priorityShare">Explicit sanitation share of core WASH <span class="sortmark"></span></th>
+        </tr></thead>
+        <tbody id="compareBody"><tr><td colspan="11">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="valuePanel" class="panel">
+  <div class="toolbar">
+    <div class="controls"><div class="control"><label for="valueCountry">Country</label><select id="valueCountry"></select></div></div>
+    <span class="status">Uses the country-case unit cost, target year and assumptions</span>
+  </div>
+  <div class="country-identity">
+    <span class="flagbox" id="valueFlag" aria-hidden="true"></span>
+    <div><div class="country-name" id="valueCountryName">Malawi</div><div class="country-note">Country-specific value-transfer estimates in 2024 US dollars</div></div>
+  </div>
+  <div class="method-intro">
+    <h2>Value of a Statistical Life: country-specific benchmarks</h2>
+    <p>The preferred benchmark uses the 2025 LMIC value-transfer equation with World Bank GNI per capita in 2020 US dollars, then inflates the result to 2024 US dollars. Conservative and upper values vary the income elasticity.</p>
+  </div>
+  <div class="vsl-head"><div>Benchmark</div><div>VSL</div><div>Annual mortality value</div><div>PV mortality benefits</div><div>Mortality return / $1</div></div>
+  <div id="vslList"></div>
+  <div class="section" style="margin-top:22px">
+    <h2>Investment versus child-survival value</h2>
+    <div class="viz-note">Capital investment is compared with the present value of mortality benefits over the phased rollout and facility life.</div>
+    <div class="bars" id="methodDetailChart"><div class="small">Loading…</div></div>
+  </div>
+</section>
+
+<section id="methodPanel" class="panel">
+  <div class="methodology">
+    <div class="section">
+      <h2>What the headline means</h2>
+      <p><strong>The headline compares recorded donor finance with estimated rural basic-sanitation capital investment need.</strong> It does not assume donors or government should pay the full household cost. The separate household-financing scenario shows how that changes the public financing requirement.</p>
+      <div class="formula">Annual investment need = unserved rural population × unit cost per person ÷ years to target</div>
+      <div class="formula">Recorded-finance coverage = annual donor/public finance ÷ annual investment need</div>
+      <div class="formula">Annual investment gap = annual investment need − recorded finance</div>
+      <p class="small">Years to target = target year − 2026. The headline uses capital investment only; O&M and replacement are excluded. CRS 14032 is national and not rural-only, so the donor-finance share can overstate what actually reaches rural sanitation.</p>
+    </div>
+    <div class="section">
+      <h2>Potential child deaths averted</h2>
+      <div class="formula">Unserved rural population = population × rural share × (1 − rural basic sanitation coverage)</div>
+      <div class="formula">Potential U5 deaths averted per year = unserved rural population × birth rate × U5 mortality × diarrhoea share × sanitation effect</div>
+      <p class="small">National birth and under-five mortality rates are applied to the unserved rural population. The sanitation effect is applied proportionally to diarrhoeal mortality. The default 13% effect uses the Cochrane cluster-RCT estimate for diarrhoea in children under five; pooled randomized and non-randomized evidence suggests a larger effect. Other health pathways are excluded.</p>
+      <div class="note"><strong>Rural denominator caution:</strong> World Bank rural population estimates rely on national urban/rural definitions, which are not fully harmonised across countries.</div>
+    </div>
+    <div class="section">
+      <h2>Unit cost per person</h2>
+      <p class="small">The central defaults are rounded planning values anchored to UNICEF / Hutton &amp; Varughese regional sanitation costing. UNICEF reports average capital cost per beneficiary of about US$28 in Sub-Saharan Africa, US$13 in Central &amp; Southern Asia and US$41 in Latin America &amp; the Caribbean. The site applies a ±25% sensitivity around its rounded regional central value. Country costing should replace these defaults wherever available.</p>
+      <table class="costs"><thead><tr><th>Region</th><th class="num">Central US$/person</th></tr></thead><tbody id="unitCostTable"></tbody></table>
+      <p class="small">For Malawi, use WASHCost Malawi where possible. Climate resilience, difficult ground conditions, higher-quality superstructures and programme delivery can materially increase costs.</p>
+    </div>
+    <div class="section">
+      <h2>Mortality-only valuation</h2>
+      <div class="formula">Annual mortality value = potential U5 deaths averted per year × VSL</div>
+      <div class="formula">PV mortality benefits = phased present value of each annual cohort served over a 10-year facility life at 5%</div>
+      <div class="formula">Mortality-only return per $1 = phased PV mortality benefits ÷ phased PV capital investment</div>
+      <p class="small">Investment and benefits are phased evenly to the target year; each newly served cohort begins generating benefits when served. Because the calculation counts only under-five diarrhoeal mortality, it captures a narrow slice of sanitation benefits. It excludes morbidity, treatment costs, caregiving and productivity, nutrition and development, education, dignity, safety, convenience and environmental benefits. A return below $1 here is not a full sanitation cost-benefit result.</p>
+      <div class="note warn">This is a statistical risk-valuation benchmark, not a price on an individual child.</div>
+    </div>
+    <div class="section">
+      <h2>Broader sanitation benefits</h2>
+      <p class="small">WHO states that sanitation benefits extend well beyond diarrhoea mortality, including reduced disease and malnutrition, greater dignity and safety, improved school attendance and wider economic gains. WHO's widely cited economic analysis estimated about US$5.50 in benefits for every US$1 invested in sanitation through lower health costs, greater productivity and fewer premature deaths.</p>
+      <p class="small">UNICEF similarly links poor sanitation with morbidity, undernutrition and stunting, cognitive development, dignity, safety and economic opportunity. These benefits affect entire households, not only children. The US$5.50 figure is shown as an external global benchmark and is not multiplied into country results.</p>
+      <div class="note"><strong>Interpretation:</strong> the mortality-only return in this tool is deliberately a floor. It should never be presented as the total sanitation return.</div>
+    </div>
+    <div class="section">
+      <h2>Financing measures</h2>
+      <ul class="source-list">
+        <li><strong>Basic sanitation:</strong> OECD CRS <span class="code">14032</span>, the headline measure.</li>
+        <li><strong>Basic WASH:</strong> <span class="code">14030 + 14031 + 14032</span>, includes basic water supply. Context only.</li>
+        <li><strong>Total WASH:</strong> sector <span class="code">140</span>, the broadest envelope. Context only.</li>
+      </ul>
+      <p class="small">CRS 14032 covers latrines, on-site disposal and alternative sanitation, including promotion of household and community investment. It is not coded as rural-only, so comparing it with a rural need can overstate the share reaching rural sanitation. A country with no CRS rows in any WASH sector over the period is shown as "no CRS record", not as zero.</p>
+    </div>
+    <div class="section">
+      <h2>Malawi government financing</h2>
+      <p class="small"><a href="https://apps.washways.org/WASHCostMalawi/" target="_blank" rel="noopener">WASHCost Malawi</a> is the route for district investment, domestic financing and life-cycle costing. An entered amount is added to donor finance in the Malawi country case and VSL tab only.</p>
+      <div class="formula">Malawi finance = basic-sanitation ODA (14032) + entered government rural sanitation financing</div>
+      <p class="small">Use executed expenditure. Do not combine budget allocations or planning estimates with executed OECD disbursements without labelling the difference.</p>
+    </div>
+    <div class="section">
+      <h2>VSL benchmark</h2>
+      <p class="small">The preferred benchmark follows the 2025 LMIC transfer function: <span class="code">VSL = 0.404 × (Y / 5,726)^e</span> million US$, where Y is GNI per capita in 2020 US dollars. The central elasticity is 1.2; sensitivity uses 1.4 (conservative) and 1.0 (upper). The 2020 result is inflated to 2024 US dollars using the US CPI from the World Bank.</p>
+      <div class="note">For Malawi, published national cost-benefit work has used a VSL range of about US$9,000–58,000. It is retained only as a historical cross-check.</div>
+      <p class="small">No child premium is applied; the tool uses a population-average VSL.</p>
+    </div>
+    <div class="section">
+      <h2>Sources</h2>
+      <ul class="source-list">
+        <li><a href="https://api.worldbank.org/v2/" target="_blank" rel="noopener">World Bank Indicators API</a>: <span class="code">SP.POP.TOTL</span>, <span class="code">SP.RUR.TOTL.ZS</span>, <span class="code">SH.STA.BASS.RU.ZS</span>, <span class="code">SH.DYN.MORT</span>, <span class="code">SP.DYN.CBRT.IN</span>, <span class="code">NY.GNP.PCAP.CD</span> (2020 for VSL transfer). Each uses the stated year, shown under the country name.</li>
+        <li><a href="https://data-explorer.oecd.org/" target="_blank" rel="noopener">OECD Creditor Reporting System</a>: disbursements in constant 2024 US$.</li>
+        <li><a href="https://www.cochrane.org/evidence/CD013328_interventions-improve-sanitation-preventing-diarrhoea" target="_blank" rel="noopener">Cochrane sanitation evidence</a>: cluster-RCT estimate for diarrhoea in children under five (RR 0.87, 95% CI 0.77–0.97).</li>
+        <li><a href="https://www.unicef.org/media/90806/file/WashReports-CostsOfSanitation.pdf" target="_blank" rel="noopener">UNICEF / Hutton &amp; Varughese sanitation costing</a>: regional capital-cost benchmarks and rural/urban financing context.</li>
+        <li><a href="https://www.unicef.org/media/85111/file/Wash-Reports-CostOfSanitation.pdf" target="_blank" rel="noopener">UNICEF, Global and regional costs of universal sanitation</a>, building on Hutton &amp; Varughese (2016): regional costing context.</li>
+        <li><a href="https://www.globalroadsafetyfacility.org/road-crash-cost-analysis-tool" target="_blank" rel="noopener">World Bank GRSF VSL tool</a> and the <a href="https://www.sciencedirect.com/org/science/article/pii/S153895882500058X" target="_blank" rel="noopener">2025 LMIC VSL transfer study</a>: continuous VSL transfer equation and sensitivity elasticities.</li>
+        <li><a href="https://afidep.org/wp-content/uploads/dlm_uploads/2020/05/NPC-and-AFIDEP-COVID-19-Cost-Benefit-Analysis-Malawi.pdf" target="_blank" rel="noopener">Malawi COVID-19 cost–benefit analysis</a>: published Malawi VSL range.</li>
+        <li><a href="https://unctad.org/topic/least-developed-countries/list" target="_blank" rel="noopener">UNCTAD</a>: LDC country universe.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="footer"><strong>Rural Sanitation Value Gap</strong> · v9 · Advocacy and resource-mobilisation tool. Estimates are scenario-based and should be replaced with country costing where available. World Bank and OECD values may be revised; recent CRS years can change as reporting is completed.</div>
+</main>
+
+<script>
+const LDC=[
+['AFG','Afghanistan','asia',5.0],['AGO','Angola','ssa',9.7],['BGD','Bangladesh','southasia',5.0],['BEN','Benin','ssa',9.7],['BFA','Burkina Faso','ssa',9.7],['BDI','Burundi','ssa',9.7],['KHM','Cambodia','seasia',3.9],['CAF','Central African Republic','ssa',9.7],['TCD','Chad','ssa',9.7],['COM','Comoros','ssa',9.7],['COD','Congo, Dem. Rep.','ssa',9.7],['DJI','Djibouti','ssa',9.7],['ERI','Eritrea','ssa',9.7],['ETH','Ethiopia','ssa',9.7],['GMB','Gambia, The','ssa',9.7],['GIN','Guinea','ssa',9.7],['GNB','Guinea-Bissau','ssa',9.7],['HTI','Haiti','lac',3.6],['KIR','Kiribati','oceania',4.4],['LAO','Lao PDR','seasia',3.9],['LSO','Lesotho','ssa',9.7],['LBR','Liberia','ssa',9.7],['MDG','Madagascar','ssa',9.7],['MWI','Malawi','ssa',9.7],['MLI','Mali','ssa',9.7],['MRT','Mauritania','ssa',9.7],['MOZ','Mozambique','ssa',9.7],['MMR','Myanmar','seasia',3.9],['NPL','Nepal','southasia',5.0],['NER','Niger','ssa',9.7],['RWA','Rwanda','ssa',9.7],['SEN','Senegal','ssa',9.7],['SLE','Sierra Leone','ssa',9.7],['SLB','Solomon Islands','oceania',4.4],['SOM','Somalia, Fed. Rep.','ssa',9.7],['SSD','South Sudan','ssa',9.7],['SDN','Sudan','ssa',9.7],['TLS','Timor-Leste','seasia',3.9],['TGO','Togo','ssa',9.7],['TUV','Tuvalu','oceania',4.4],['UGA','Uganda','ssa',9.7],['TZA','Tanzania','ssa',9.7],['YEM','Yemen, Rep.','mena',5.1],['ZMB','Zambia','ssa',9.7]
+];
+const REGION={ssa:'Sub-Saharan Africa',southasia:'South Asia',seasia:'Southeast Asia',asia:'Asia',lac:'Latin America & Caribbean',oceania:'Pacific',mena:'Middle East'};
+// Indicative rural basic sanitation unit cost, 2024 US$ per person (latrine + programme delivery). Editable assumption.
+const UNIT_COST={ssa:28,southasia:13,seasia:22,asia:13,lac:41,oceania:11,mena:35};
+const COST_MULT={low:.75,central:1,high:1.25};
+const ASSET_LIFE=10,DISCOUNT=0.05,BASE_YEAR=2026;
+const ISO2={AFG:'AF',AGO:'AO',BGD:'BD',BEN:'BJ',BFA:'BF',BDI:'BI',KHM:'KH',CAF:'CF',TCD:'TD',COM:'KM',COD:'CD',DJI:'DJ',ERI:'ER',ETH:'ET',GMB:'GM',GIN:'GN',GNB:'GW',HTI:'HT',KIR:'KI',LAO:'LA',LSO:'LS',LBR:'LR',MDG:'MG',MWI:'MW',MLI:'ML',MRT:'MR',MOZ:'MZ',MMR:'MM',NPL:'NP',NER:'NE',RWA:'RW',SEN:'SN',SLE:'SL',SLB:'SB',SOM:'SO',SSD:'SS',SDN:'SD',TLS:'TL',TGO:'TG',TUV:'TV',UGA:'UG',TZA:'TZ',YEM:'YE',ZMB:'ZM'};
+const IND={pop:'SP.POP.TOTL',rural:'SP.RUR.TOTL.ZS',san:'SH.STA.BASS.RU.ZS',u5:'SH.DYN.MORT',births:'SP.DYN.CBRT.IN',gni2020:'NY.GNP.PCAP.CD'};
+const IND_LABEL={pop:'population',rural:'rural share',san:'rural sanitation',u5:'U5 mortality',births:'birth rate',gni2020:'GNI per capita (2020)'};
+const REQUIRED=['pop','rural','san','u5','births'];
+const FALLBACK_MWI={pop:{value:22216120,year:2025},rural:{value:82,year:2025},san:{value:50,year:2024},u5:{value:49,year:2024},births:{value:31.1,year:2024},gni2020:{value:560,year:2020}};
+const METHODS=[['low','Conservative','Income elasticity 1.4'],['central','Central','Income elasticity 1.2'],['high','Upper','Income elasticity 1.0']];
+const $=id=>document.getElementById(id);
+const state={wb:{},spend:{},wbOK:false,wbFailed:[],oecdOK:false,tableRows:[],sort:{key:'shareOfNeed',dir:'asc'},valuationMethod:'central',showDetail:false,usCpiFactor:143.86/118.69,cacheStamp:null};
+const isoList=LDC.map(x=>x[0]);
+const meta=iso=>LDC.find(x=>x[0]===iso);
+
+/* Formatting */
+function flagEmoji(iso3){const a=ISO2[iso3]||'';return a?String.fromCodePoint(...[...a].map(ch=>127397+ch.charCodeAt(0))):'🏳️'}
+function flagImg(iso3,w,alt=''){const a=(ISO2[iso3]||'').toLowerCase(),emoji=flagEmoji(iso3);if(!a)return `<span class="flagemoji">${emoji}</span>`;return `<img src="https://flagcdn.com/${w}/${a}.png" alt="${alt}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="flagemoji" style="display:none">${emoji}</span>`}
+function flagHTML(iso3,name){return `<span class="inline-flag">${flagImg(iso3,'w40')}<span>${name}</span></span>`}
+function money(x){if(!isFinite(x))return '—';const a=Math.abs(x);if(a>=1e9)return '$'+(x/1e9).toFixed(2)+'bn';if(a>=1e6)return '$'+(x/1e6).toFixed(1)+'m';if(a>=1e3)return '$'+(x/1e3).toFixed(0)+'k';return '$'+x.toFixed(0)}
+function num(x,d=0){return isFinite(x)?Number(x).toLocaleString('en-GB',{maximumFractionDigits:d,minimumFractionDigits:d}):'—'}
+function pct(x,d=0){if(!isFinite(x))return '—';if(x>0&&x<1&&d===0)return '<1%';return num(x,d)+'%'}
+function people(x){if(!isFinite(x))return '—';if(x>=1e6)return (x/1e6).toFixed(1)+'m';if(x>=1e3)return (x/1e3).toFixed(0)+'k';return num(x)}
+function perDollar(x){return isFinite(x)?'$'+x.toFixed(2):'—'}
+function pv(annual,years=ASSET_LIFE,r=DISCOUNT){if(!isFinite(annual))return NaN;return r<=0?annual*years:annual*(1-Math.pow(1+r,-years))/r}
+
+/* Data */
+function parseCSV(text){const rows=[];let row=[],field='',q=false;for(let i=0;i<text.length;i++){const c=text[i],n=text[i+1];if(q){if(c==='"'&&n==='"'){field+='"';i++}else if(c==='"')q=false;else field+=c}else{if(c==='"')q=true;else if(c===','){row.push(field);field=''}else if(c==='\n'){row.push(field.replace(/\r$/,''));rows.push(row);row=[];field=''}else field+=c}}if(field.length||row.length){row.push(field);rows.push(row)}return rows}
+async function getWithTimeout(url,ms=18000){const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),ms);try{return await fetch(url,{signal:ctl.signal})}finally{clearTimeout(t)}}
+async function fetchWB(){
+  const out={};isoList.forEach(i=>out[i]={});
+  const keys=Object.keys(IND);
+  const res=await Promise.allSettled(keys.map(async key=>{
+    const url=`https://api.worldbank.org/v2/country/all/indicator/${IND[key]}?format=json&date=2018:2026&per_page=20000`;
+    const r=await getWithTimeout(url);if(!r.ok)throw new Error('World Bank '+r.status);
+    const j=await r.json();let rows=(j[1]||[]).filter(x=>x.value!==null&&out[x.countryiso3code]);
+    if(key==='gni2020'){const y=rows.filter(x=>Number(x.date)===2020);if(y.length)rows=y}
+    rows.sort((a,b)=>Number(b.date)-Number(a.date)).forEach(x=>{if(!out[x.countryiso3code][key])out[x.countryiso3code][key]={value:Number(x.value),year:Number(x.date)}});
+  }));
+  state.wb=out;state.wbFailed=keys.filter((k,i)=>res[i].status==='rejected');state.wbOK=state.wbFailed.length===0;
+}
+async function fetchUSCPI(){
+  const url='https://api.worldbank.org/v2/country/USA/indicator/FP.CPI.TOTL?format=json&date=2020:2024&per_page=20';
+  const r=await getWithTimeout(url,12000);if(!r.ok)throw new Error('World Bank US CPI '+r.status);
+  const j=await r.json(), rows=j[1]||[];const y2020=rows.find(x=>x.date==='2020'&&x.value!==null),y2024=rows.find(x=>x.date==='2024'&&x.value!==null);
+  if(y2020&&y2024)state.usCpiFactor=Number(y2024.value)/Number(y2020.value);
+}
+function loadCache(){try{const x=JSON.parse(localStorage.getItem('rsvg-v8-cache')||'null');if(!x)return false;if(x.wb)state.wb=x.wb;if(x.spend)state.spend=x.spend;if(x.usCpiFactor)state.usCpiFactor=x.usCpiFactor;state.wbOK=!!x.wbOK;state.oecdOK=!!x.oecdOK;state.cacheStamp=x.stamp||null;return !!(x.wb||x.spend)}catch(e){return false}}
+function saveCache(){try{localStorage.setItem('rsvg-v8-cache',JSON.stringify({wb:state.wb,spend:state.spend,usCpiFactor:state.usCpiFactor,wbOK:state.wbOK,oecdOK:state.oecdOK,stamp:new Date().toISOString()}))}catch(e){}}
+
+async function fetchOECD(){
+  const url=`https://sdmx.oecd.org/dcd-public/rest/data/OECD.DCD.FSD,DSD_CRS@DF_CRS,1.7/ALLD.${isoList.join('+')}.140+14030+14031+14032.100._T._T.D.Q._T..?startPeriod=2022&endPeriod=2024&dimensionAtObservation=AllDimensions&format=csvfile`;
+  const r=await getWithTimeout(url,22000);if(!r.ok)throw new Error('OECD '+r.status);
+  const rows=parseCSV(await r.text());if(rows.length<2)throw new Error('OECD returned no data');
+  const h=rows[0].map(x=>x.trim().replace(/^\uFEFF/,'')),idx=n=>h.indexOf(n),ir=idx('RECIPIENT'),is=idx('SECTOR'),it=idx('TIME_PERIOD'),iv=idx('OBS_VALUE');
+  if([ir,is,it,iv].some(i=>i<0))throw new Error('Unexpected OECD CSV fields');
+  const data={};isoList.forEach(i=>data[i]={narrow:[],basic:[],wash:[]});
+  rows.slice(1).forEach(r=>{const iso=r[ir],sector=r[is],year=Number(r[it]),v=Number(r[iv]);if(!data[iso]||!isFinite(v))return;const usd=v*1e6;
+    if(sector==='14032')data[iso].narrow.push({year,value:usd});
+    if(['14030','14031','14032'].includes(sector))data[iso].basic.push({year,value:usd});
+    if(sector==='140')data[iso].wash.push({year,value:usd})});
+  state.spend=data;state.oecdOK=true;
+}
+function periodYears(p){const [a,b]=p.includes('-')?p.split('-').map(Number):[+p,+p];const ys=[];for(let y=a;y<=b;y++)ys.push(y);return ys}
+function annualAvg(values,period,hasRecord){if(!state.oecdOK||!hasRecord)return NaN;const ys=periodYears(period);return ys.reduce((t,y)=>t+values.filter(x=>x.year===y).reduce((s,x)=>s+x.value,0),0)/ys.length}
+function wbData(iso){const d={...(state.wb[iso]||{})},fb=[];if(iso==='MWI')Object.keys(FALLBACK_MWI).forEach(k=>{if(!d[k]){d[k]=FALLBACK_MWI[k];fb.push(k)}});return {d,fb}}
+function vslTransfer(gni2020,elasticity){if(!isFinite(gni2020)||gni2020<=0)return NaN;return 0.404e6*Math.pow(gni2020/5726,elasticity)*state.usCpiFactor}
+function phasedPV(fullAnnualBenefit,totalCost,years,assetLife=ASSET_LIFE,r=DISCOUNT){if(!isFinite(fullAnnualBenefit)||!isFinite(totalCost)||years<=0)return {pvBenefit:NaN,pvCost:NaN,bcr:NaN};const cohortBenefit=fullAnnualBenefit/years,cohortCost=totalCost/years;let pvBenefit=0,pvCost=0;for(let t=0;t<years;t++){const disc=Math.pow(1+r,t);pvCost+=cohortCost/disc;pvBenefit+=pv(cohortBenefit,assetLife,r)/disc}return {pvBenefit,pvCost,bcr:pvCost>0?pvBenefit/pvCost:NaN}}
+
+/* Model: forCompare uses regional defaults and donor finance only */
+function model(iso,forCompare=false){
+  const {d,fb}=wbData(iso);if(!REQUIRED.every(k=>d[k]))return null;
+  const m=meta(iso),rk=m[2];
+  const dia=(forCompare?m[3]:+$('dia').value)/100,eff=+$('eff').value/100;
+  const unserved=Math.max(0,d.pop.value*d.rural.value/100*(1-d.san.value/100));
+  const annual=unserved*(d.births.value/1000)*(d.u5.value/1000)*dia*eff;
+  const regionalCost=UNIT_COST[rk],scenario=forCompare?'central':$('costScenario').value,entered=+$('unitCost').value;
+  const baseScenarioCost=regionalCost*(COST_MULT[scenario]||1);
+  const unitCost=(!forCompare&&scenario==='custom'&&entered>0)?entered:baseScenarioCost;
+  const years=Math.max(1,+$('target').value-BASE_YEAR);
+  const need=unserved*unitCost,annualNeed=need/years;
+  const s=state.spend[iso]||{narrow:[],basic:[],wash:[]},has=(s.narrow.length+s.basic.length+s.wash.length)>0,period=$('period').value;
+  const narrow=annualAvg(s.narrow,period,has),basic=annualAvg(s.basic,period,has),wash=annualAvg(s.wash,period,has);
+  const domestic=(!forCompare&&iso==='MWI'&&+$('domesticSpend').value>0)?+$('domesticSpend').value:0;
+  const finance=isFinite(narrow)?narrow+domestic:(domestic>0?domestic:NaN);
+  const shareOfNeed=(isFinite(finance)&&annualNeed>0)?100*finance/annualNeed:NaN;
+  const shortfall=isFinite(finance)?Math.max(0,annualNeed-finance):NaN;
+  const gni2020=d.gni2020?d.gni2020.value:NaN,vsl={},annualValue={},pvValue={},bcr={};
+  const elasticity={low:1.4,central:1.2,high:1.0};let pvCapital=NaN;
+  ['low','central','high'].forEach(k=>{vsl[k]=vslTransfer(gni2020,elasticity[k]);annualValue[k]=vsl[k]*annual;const ph=phasedPV(annualValue[k],need,years);pvValue[k]=ph.pvBenefit;pvCapital=ph.pvCost;bcr[k]=ph.bcr});
+  const priorityShare=(isFinite(narrow)&&isFinite(basic)&&basic>0)?100*narrow/basic:NaN;
+  const hhShare=forCompare?0:+$('hhShare').value/100,publicNeed=need*(1-hhShare),publicAnnualNeed=publicNeed/years,publicCoverage=(isFinite(finance)&&publicAnnualNeed>0)?100*finance/publicAnnualNeed:NaN,publicShortfall=isFinite(finance)?Math.max(0,publicAnnualNeed-finance):NaN;
+  return {iso,name:m[1],region:REGION[rk],d,fb,coverage:d.san.value,gap:Math.max(0,100-d.san.value),unserved,annual,unitCost,regionalCost,scenario,years,need,annualNeed,narrow,basic,wash,domestic,finance,shareOfNeed,shortfall,gni2020,vsl,annualValue,pvValue,pvCapital,bcr,priorityShare,hhShare,publicNeed,publicAnnualNeed,publicCoverage,publicShortfall};
+}
+
+
+/* Shared render helpers */
+function barsHTML(rows,activeKey=''){const good=rows.filter(r=>isFinite(r.value)&&r.value>=0);if(!good.length)return '<div class="small">No comparable data available.</div>';const mx=Math.max(...good.map(r=>r.value),1);return rows.map(r=>{const ok=isFinite(r.value)&&r.value>=0,w=ok?Math.max(.5,100*r.value/mx):0;return `<div class="bar-row${r.key===activeKey?' active':''}"><div class="bar-label">${r.label}</div><div class="bar-track">${ok?`<div class="bar-fill" style="width:${w}%"></div>`:''}</div><div class="bar-value">${ok?r.format(r.value):'—'}</div></div>`}).join('')}
+function shareText(x){if(!isFinite(x))return '—';if(x>=100)return '≥100%';return pct(x,0)}
+function dataYearsText(c){const parts=Object.keys(IND).filter(k=>c.d[k]).map(k=>`${IND_LABEL[k]} ${c.d[k].year}`);return 'Data years: '+parts.join(' · ')+(c.fb.length?' · built-in fallback used for '+c.fb.map(k=>IND_LABEL[k]).join(', '):'')}
+
+function renderCountry(){
+  const iso=$('country').value,c=model(iso),tgt=$('target').value;
+  $('selectedFlag').innerHTML=flagImg(iso,'w80',(meta(iso)?.[1]||iso)+' flag');$('selectedCountryName').textContent=meta(iso)?.[1]||iso;
+  $('vDia').textContent=pct(+$('dia').value,1);$('vEff').textContent=pct(+$('eff').value);$('vHH').textContent=pct(+$('hhShare').value);
+  $('malawiFinanceBox').classList.toggle('hidden',iso!=='MWI');$('malawiBroaderBox').classList.toggle('hidden',iso!=='MWI');
+  if($('costScenario').value!=='custom')$('unitCost').value=Math.round((UNIT_COST[meta(iso)[2]]||30)*(COST_MULT[$('costScenario').value]||1));
+  document.querySelectorAll('#frontMethodTabs .methodtab').forEach(b=>b.classList.toggle('active',b.dataset.valueMethod===state.valuationMethod));
+  if(!c){['heroShare','heroLives','heroShortfall','kGap','kUnserved','kNeed','kCoverage','kGap2','vVsl','vAnnual','vPV','vBcr','publicNeed','broaderMortalityReturn'].forEach(id=>$(id).textContent='—');$('heroText').textContent='Source data are incomplete for this country.';$('dataYears').textContent='';$('needChart').innerHTML=$('scopeChart').innerHTML=$('payerChart').innerHTML='<div class="small">Insufficient source data.</div>';$('bcrNote').textContent='';return}
+  $('dataYears').textContent=dataYearsText(c);
+  const over=isFinite(c.shareOfNeed)&&c.shareOfNeed>=100;
+  $('heroShare').textContent=shareText(c.shareOfNeed);
+  $('heroUnit').textContent=`of estimated annual rural sanitation investment need to ${tgt} is covered by recorded donor finance`;
+  if(!isFinite(c.finance))$('heroText').textContent=state.oecdOK?'No OECD CRS basic-sanitation record for this country in the selected period.':'OECD financing data are unavailable right now.';
+  else if(over)$('heroText').innerHTML=`Recorded finance is <strong>${money(c.finance)} a year</strong> against an estimated <strong>${money(c.annualNeed)}</strong> annual capital requirement. National CRS finance is not rural-only, so this should not be read as proof of full rural funding.`;
+  else $('heroText').innerHTML=`<strong>${money(c.finance)} a year</strong> is recorded against an estimated <strong>${money(c.annualNeed)}</strong> a year needed to close the rural basic-sanitation gap by ${tgt}.`;
+  $('heroCaveat').textContent=(c.domestic>0?'Includes entered Malawi government finance. ':'Donor finance only. Government and household spending are not counted. ')+`Capital-cost scenario: ${c.scenario}, ${money(c.unitCost)} per person.`;
+  $('heroLives').textContent='≈'+num(c.annual,0);
+  $('heroShortfall').textContent=isFinite(c.shortfall)?money(c.shortfall):'—';
+  $('heroShortfallSub').textContent=`per year to ${tgt}, before O&M and replacement`;
+  $('needChart').innerHTML=barsHTML([{key:'fin',label:'Recorded donor/public finance per year',value:c.finance,format:money},{key:'need',label:`Estimated investment need per year to ${tgt}`,value:c.annualNeed,format:money}],'fin');
+  $('needChartNote').textContent=`Total capital investment ${money(c.need)} using ${money(c.unitCost)} per person, spread over ${c.years} years.`;
+  $('kGap').textContent=pct(c.gap,0);$('kGap2').textContent=pct(c.gap,0);$('kCoverage').textContent=pct(c.coverage,0);
+  $('kUnserved').textContent=people(c.unserved);$('kNeed').textContent=money(c.need);
+  $('coverageFill').style.width=Math.max(0,Math.min(100,c.coverage))+'%';
+  const sh=v=>(isFinite(v)&&c.annualNeed>0)?100*(v+c.domestic)/c.annualNeed:NaN;
+  $('scopeChart').innerHTML=barsHTML([{key:'narrow',label:'Basic sanitation (14032)',value:sh(c.narrow),format:shareText},{key:'basic',label:'Basic WASH incl. water',value:sh(c.basic),format:shareText},{key:'wash',label:'Total WASH incl. water',value:sh(c.wash),format:shareText}],'narrow');
+  $('publicNeed').textContent=money(c.publicAnnualNeed)+'/yr';
+  $('publicCoverageText').innerHTML=`If households finance ${pct(100*c.hhShare)}, recorded donor/public finance covers <span class="pillstat">${shareText(c.publicCoverage)}</span> of the remaining public/programme requirement.`;
+  $('payerChart').innerHTML=barsHTML([{key:'hh',label:'Illustrative household contribution',value:c.need*c.hhShare,format:money},{key:'public',label:'Public / programme financing requirement',value:c.publicNeed,format:money}],'public');
+  const k=state.valuationMethod,b=c.bcr[k];
+  $('vVsl').textContent=money(c.vsl[k]);$('vAnnual').textContent=money(c.annualValue[k]);$('vPV').textContent=money(c.pvValue[k]);$('vBcr').textContent=perDollar(b);$('broaderMortalityReturn').textContent=perDollar(b)+' / $1';
+  const modeler='<a href="https://washways.org/sanitation-model/" target="_blank" rel="noopener">Sanitation Impact Modeler</a>';
+  $('bcrNote').innerHTML=!isFinite(b)?'GNI data unavailable, so no VSL benchmark can be applied.':b<1
+    ?`Modelled mortality benefits equal about <strong>${pct(100*b,0)}</strong> of phased capital investment on this benchmark. <strong>This is not the sanitation ROI.</strong> See the ${modeler} for wider benefits.`
+    :`Modelled mortality benefits equal <strong>${perDollar(b)} per $1 invested</strong>. <strong>This is not the sanitation ROI.</strong> Morbidity, time, productivity, nutrition, dignity, safety and other benefits are additional. See the ${modeler}.`;
+  $('countryStatus').textContent=`World Bank ${state.wbOK?'live':state.wbFailed.length<Object.keys(IND).length?'partial':'unavailable'} · OECD ${state.oecdOK?'live':'unavailable'} · ${$('period').selectedOptions[0].textContent.toLowerCase()}`;
+  renderDomestic(c);
+}
+function renderDomestic(c){const box=$('domesticResult');if(c.iso!=='MWI'||!(c.domestic>0)){box.classList.add('hidden');return}box.classList.remove('hidden');box.innerHTML=`Donor plus entered government financing is <strong>${money(c.finance)} a year</strong>. Against total investment need that is ${shareText(c.shareOfNeed)}; under the illustrative household-financing scenario it is ${shareText(c.publicCoverage)} of the public/programme requirement.`}
+
+/* LDC comparison */
+function allRows(){const method=$('compareMethod').value;return LDC.map(([iso])=>model(iso,true)).filter(Boolean).map(r=>{const spend=r[method],shareOfNeed=(isFinite(spend)&&r.annualNeed>0)?100*spend/r.annualNeed:NaN,shortfall=isFinite(spend)?Math.max(0,r.annualNeed-spend):NaN;return {...r,spend,shareOfNeed,shortfall,bcrCentral:r.bcr.central,vslCentral:r.vsl.central}})}
+function topRows(rows,key,desc){const n=$('chartCount').value==='all'?rows.length:+$('chartCount').value;return rows.filter(r=>isFinite(r[key])).sort((a,b)=>desc?b[key]-a[key]:a[key]-b[key]).slice(0,n)}
+function rankChart(el,rows,key,fmt,cap){const dst=$(el),sel=$('country').value;if(!rows.length){dst.innerHTML='<div class="small">No comparable data available.</div>';return}const vals=rows.map(r=>cap?Math.min(r[key],cap):r[key]),mx=Math.max(...vals,1e-9);dst.innerHTML=rows.map((r,i)=>`<div class="barrow${r.iso===sel?' selected':''}" title="${r.name}: ${fmt(r[key])}"><div class="barlabel">${flagHTML(r.iso,r.name)}</div><div class="track"><div class="barfill" style="width:${Math.max(1.5,100*vals[i]/mx)}%"></div></div><div class="barval">${fmt(r[key])}</div></div>`).join('')}
+function renderCharts(){const rows=allRows();rankChart('shareChart',topRows(rows,'shareOfNeed',false),'shareOfNeed',shareText,100);rankChart('shortfallChart',topRows(rows,'shortfall',true),'shortfall',money);rankChart('livesChart',topRows(rows,'annual',true),'annual',x=>num(x,0));rankChart('returnChart',topRows(rows,'bcrCentral',true),'bcrCentral',perDollar);$('compareStatus').textContent=`Central regional cost scenario · close the gap by ${$('target').value} · OECD ${state.oecdOK?'live':'unavailable'}`}
+function filteredRows(){const q=$('compareSearch').value.trim().toLowerCase(),rg=$('regionFilter').value,sf=$('spendFilter').value;let rows=allRows().filter(r=>(!q||r.name.toLowerCase().includes(q))&&(rg==='all'||r.region===rg)).filter(r=>sf==='all'||(sf==='positive'&&r.spend>0)||(sf==='zero'&&r.spend===0)||(sf==='missing'&&!isFinite(r.spend)));const {key,dir}=state.sort,sign=dir==='asc'?1:-1;rows.sort((a,b)=>{const av=a[key],bv=b[key];if(typeof av==='string')return sign*av.localeCompare(bv);if(!isFinite(av)&&!isFinite(bv))return a.name.localeCompare(b.name);if(!isFinite(av))return 1;if(!isFinite(bv))return -1;return sign*(av-bv)});return rows}
+function renderTable(){const rows=filteredRows();state.tableRows=rows;const sel=$('country').value;$('compareBody').innerHTML=rows.map(r=>`<tr${r.iso===sel?' class="selrow"':''}><td class="countrycell">${flagHTML(r.iso,r.name)}</td><td>${r.region}</td><td class="num">${pct(r.gap,0)}</td><td class="num">${money(r.annualNeed)}</td><td class="num">${isFinite(r.spend)?money(r.spend):'no record'}</td><td class="num"><strong>${shareText(r.shareOfNeed)}</strong></td><td class="num">${num(r.annual,0)}</td><td class="num detailcol${state.showDetail?'':' hidden'}">${people(r.unserved)}</td><td class="num detailcol${state.showDetail?'':' hidden'}">${money(r.shortfall)}</td><td class="num detailcol${state.showDetail?'':' hidden'}">${money(r.vslCentral)}</td><td class="num detailcol${state.showDetail?'':' hidden'}">${perDollar(r.bcrCentral)}</td><td class="num detailcol${state.showDetail?'':' hidden'}">${pct(r.priorityShare,0)}</td></tr>`).join('')||'<tr><td colspan="12">No matching countries.</td></tr>';document.querySelectorAll('th.sortable').forEach(th=>{th.querySelector('.sortmark').textContent=th.dataset.sort===state.sort.key?(state.sort.dir==='asc'?'▲':'▼'):''});document.querySelectorAll('th.detailcol').forEach(th=>th.classList.toggle('hidden',!state.showDetail));$('moreColsBtn').textContent=state.showDetail?'Fewer columns':'More columns'}
+function renderCompare(){renderCharts();renderTable()}
+
+/* VSL benchmarks */
+function renderValue(){
+  const iso=$('country').value,c=model(iso);
+  $('valueCountry').value=iso;$('valueFlag').innerHTML=flagImg(iso,'w80',(meta(iso)?.[1]||iso)+' flag');$('valueCountryName').textContent=meta(iso)?.[1]||iso;
+  if(!c){$('vslList').innerHTML='<div class="small" style="padding:16px 0">Insufficient source data for this country.</div>';$('methodDetailChart').innerHTML='';return}
+  const row=(title,sub,vsl)=>{const a=vsl*c.annual,ph=phasedPV(a,c.need,c.years);return `<div class="vsl-row"><div><strong>${title}</strong><span>${sub}</span></div><div class="v" data-l="VSL">${money(vsl)}</div><div class="v" data-l="Annual value">${money(a)}</div><div class="v" data-l="PV benefits">${money(ph.pvBenefit)}</div><div class="v bcr" data-l="Return">${perDollar(ph.bcr)}</div></div>`};
+  let html=METHODS.map(([k,t,s])=>row(t,s,c.vsl[k])).join('');
+  if(iso==='MWI')html+=row('Published Malawi precedent','Historical national CBA midpoint; published range US$9k–58k',33500);
+  $('vslList').innerHTML=html;
+  $('methodDetailChart').innerHTML=barsHTML([{key:'cost',label:'PV capital investment',value:c.pvCapital,format:money},{key:'low',label:'PV child-survival value · conservative',value:c.pvValue.low,format:money},{key:'central',label:'PV child-survival value · central',value:c.pvValue.central,format:money},{key:'high',label:'PV child-survival value · upper',value:c.pvValue.high,format:money}],'cost');
+}
+
+function refresh(){renderCountry();renderCompare();renderValue()}
+function setCountry(iso){$('country').value=iso;$('valueCountry').value=iso;const m=meta(iso);$('dia').value=m[3];if($('costScenario').value!=='custom')$('unitCost').value=Math.round(UNIT_COST[m[2]]*(COST_MULT[$('costScenario').value]||1));refresh()}
+
+/* Setup */
+LDC.forEach(([iso,name])=>['country','valueCountry'].forEach(id=>{const o=document.createElement('option');o.value=iso;o.textContent=`${flagEmoji(iso)}  ${name}`;$(id).appendChild(o)}));
+[...new Set(LDC.map(x=>REGION[x[2]]))].sort().forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=r;$('regionFilter').appendChild(o)});
+$('unitCostTable').innerHTML=Object.entries(UNIT_COST).map(([k,v])=>`<tr><td>${REGION[k]}</td><td class="num">$${v}</td></tr>`).join('');
+$('country').value='MWI';$('valueCountry').value='MWI';$('unitCost').value=UNIT_COST.ssa;
+
+$('country').addEventListener('change',()=>setCountry($('country').value));
+$('valueCountry').addEventListener('change',()=>setCountry($('valueCountry').value));
+['period','target'].forEach(id=>$(id).addEventListener('change',refresh));
+$('costScenario').addEventListener('change',()=>{if($('costScenario').value!=='custom'){const m=meta($('country').value);$('unitCost').value=Math.round(UNIT_COST[m[2]]*(COST_MULT[$('costScenario').value]||1))}refresh()});
+['unitCost','domesticSpend'].forEach(id=>$(id).addEventListener('input',()=>{if(id==='unitCost')$('costScenario').value='custom';renderCountry();renderValue()}));
+$('hhShare').addEventListener('input',()=>{renderCountry();renderValue()});
+['dia'].forEach(id=>$(id).addEventListener('input',()=>{renderCountry();renderValue()}));
+['eff'].forEach(id=>$(id).addEventListener('input',refresh));
+$('compareMethod').addEventListener('change',renderCompare);$('chartCount').addEventListener('change',renderCharts);$('moreColsBtn').addEventListener('click',()=>{state.showDetail=!state.showDetail;renderTable()});
+['compareSearch','regionFilter','spendFilter'].forEach(id=>$(id).addEventListener(id==='compareSearch'?'input':'change',renderTable));
+document.querySelectorAll('#frontMethodTabs .methodtab').forEach(b=>b.addEventListener('click',()=>{state.valuationMethod=b.dataset.valueMethod;renderCountry()}));
+document.querySelectorAll('[data-open-tab]').forEach(el=>el.addEventListener('click',()=>{const btn=[...document.querySelectorAll('.tabbtn')].find(x=>x.dataset.tab===el.dataset.openTab);if(btn)btn.click();window.scrollTo({top:0,behavior:'smooth'})}));
+document.querySelectorAll('th.sortable').forEach(th=>th.addEventListener('click',()=>{const key=th.dataset.sort;if(state.sort.key===key)state.sort.dir=state.sort.dir==='asc'?'desc':'asc';else state.sort={key,dir:['name','region','shareOfNeed','coverage','priorityShare','bcrCentral'].includes(key)?'asc':'desc'};renderTable()}));
+document.querySelectorAll('.tabbtn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tabbtn').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===b.dataset.tab))}));
+$('csvBtn').addEventListener('click',()=>{const method=$('compareMethod').value,rows=state.tableRows||[];const out=[['country','iso3','region','rural_basic_sanitation_pct','rural_people_unserved','unit_cost_usd_per_person','target_year','annual_investment_need_usd','financing_method','annual_donor_finance_constant_2024_usd','finance_to_need_pct','annual_investment_gap_usd','potential_u5_deaths_averted_per_year','central_vsl_2024_usd','mortality_only_return_per_usd','explicit_basic_sanitation_share_core_wash_pct'],...rows.map(r=>[r.name,r.iso,r.region,r.coverage,Math.round(r.unserved),r.unitCost,$('target').value,Math.round(r.annualNeed),method,r.spend,r.shareOfNeed,r.shortfall,r.annual,r.vsl.central,r.bcrCentral,r.priorityShare])];const csv=out.map(row=>row.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`ldc_rural_sanitation_need_vs_finance_${method}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+
+async function init(){
+  const cached=loadCache();if(cached){document.body.classList.remove('loading');$('globalStatus').innerHTML=`<strong>Cached data</strong>${state.cacheStamp?' · '+new Date(state.cacheStamp).toLocaleDateString():''}`;refresh()}
+  document.body.classList.add('loading');
+  let oe=null;await Promise.all([fetchWB().catch(e=>console.warn(e)),fetchOECD().catch(e=>{oe=e;console.warn(e)}),fetchUSCPI().catch(e=>console.warn(e))]);
+  if(state.wbOK||state.oecdOK)saveCache();
+  const wbTxt=state.wbOK?'World Bank live':state.wbFailed.length<Object.keys(IND).length?`World Bank partial (missing ${state.wbFailed.map(k=>IND_LABEL[k]).join(', ')})`:'World Bank unavailable';
+  $('globalStatus').innerHTML=`<strong>${wbTxt}</strong> · <strong>${state.oecdOK?'OECD CRS live':'OECD CRS unavailable'}</strong>`;
+  document.body.classList.remove('loading');refresh();
+}
+init();
+</script>
+</body>
+</html>
